@@ -132,6 +132,74 @@ footer{text-align:center;padding:22px;color:#aaa;border-top:1px solid #333}
   </div>
 </section>
 
+
+<section id="order">
+  <h2>نموذج طلب خدمة</h2>
+  <p>املأ المعلومات التالية وسنتواصل معك لتأكيد طلبك</p>
+
+  <form id="orderForm" style="max-width:600px;margin:auto;">
+
+    <input id="customerName" type="text"
+      placeholder="الاسم الكامل" required>
+
+    <input id="customerPhone" type="tel"
+      placeholder="رقم الهاتف" required>
+
+    <select id="serviceType" required>
+      <option value="">اختر نوع الخدمة</option>
+      <option>تصميم إعلاني</option>
+      <option>بطاقات الأعمال</option>
+      <option>خدمات الطباعة</option>
+      <option>تصميم شعار</option>
+      <option>تغليف المنتجات</option>
+      <option>خدمة أخرى</option>
+    </select>
+
+    <input id="quantity" type="number"
+      min="1" placeholder="الكمية المطلوبة">
+
+    <input id="size" type="text"
+      placeholder="المقاس (اختياري)">
+
+    <input id="deliveryDate" type="date">
+
+    <textarea id="orderDetails"
+      placeholder="اشرح تفاصيل طلبك..." rows="5"
+      required></textarea>
+
+    <button type="submit" class="btn">
+      إرسال الطلب عبر واتساب
+    </button>
+  </form>
+</section>
+
+<script>
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("customerName").value;
+  const phone = document.getElementById("customerPhone").value;
+  const service = document.getElementById("serviceType").value;
+  const quantity = document.getElementById("quantity").value || "غير محددة";
+  const size = document.getElementById("size").value || "غير محدد";
+  const date = document.getElementById("deliveryDate").value || "غير محدد";
+  const details = document.getElementById("orderDetails").value;
+
+  const message =
+    "طلب جديد من BBA Print & Design%0A" +
+    "الاسم: " + encodeURIComponent(name) + "%0A" +
+    "الهاتف: " + encodeURIComponent(phone) + "%0A" +
+    "الخدمة: " + encodeURIComponent(service) + "%0A" +
+    "الكمية: " + encodeURIComponent(quantity) + "%0A" +
+    "المقاس: " + encodeURIComponent(size) + "%0A" +
+    "موعد التسليم: " + encodeURIComponent(date) + "%0A" +
+    "التفاصيل: " + encodeURIComponent(details);
+
+  window.open("https://wa.me/213549324801?text=" + message, "_blank");
+});
+</script>
+</section>
+  
 <section class="contact" id="contact">
 <h2>تواصل معنا</h2>
 <p>للطلب والاستفسار تواصل معنا مباشرة عبر واتساب</p>
