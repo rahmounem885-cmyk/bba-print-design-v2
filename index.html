@@ -177,25 +177,30 @@ footer{text-align:center;padding:22px;color:#aaa;border-top:1px solid #333}
 document.getElementById("orderForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const name = document.getElementById("customerName").value;
-  const phone = document.getElementById("customerPhone").value;
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
   const service = document.getElementById("serviceType").value;
   const quantity = document.getElementById("quantity").value || "غير محددة";
   const size = document.getElementById("size").value || "غير محدد";
   const date = document.getElementById("deliveryDate").value || "غير محدد";
-  const details = document.getElementById("orderDetails").value;
+  const details = document.getElementById("orderDetails").value.trim();
 
-  const message =
-    "طلب جديد من BBA Print & Design%0A" +
-    "الاسم: " + encodeURIComponent(name) + "%0A" +
-    "الهاتف: " + encodeURIComponent(phone) + "%0A" +
-    "الخدمة: " + encodeURIComponent(service) + "%0A" +
-    "الكمية: " + encodeURIComponent(quantity) + "%0A" +
-    "المقاس: " + encodeURIComponent(size) + "%0A" +
-    "موعد التسليم: " + encodeURIComponent(date) + "%0A" +
-    "التفاصيل: " + encodeURIComponent(details);
+  const message = `
+طلب جديد من BBA Print & Design
 
-  window.open("https://wa.me/213549324801?text=" + message, "_blank");
+الاسم: ${name}
+الهاتف: ${phone}
+الخدمة: ${service}
+الكمية: ${quantity}
+المقاس: ${size}
+موعد التسليم: ${date}
+التفاصيل: ${details}
+`;
+
+  const url = "https://wa.me/213549324801?text=" +
+              encodeURIComponent(message);
+
+  window.location.href = url;
 });
 </script>
 </section>
